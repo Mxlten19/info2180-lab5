@@ -1,4 +1,4 @@
-/* Reset and base styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -29,7 +29,6 @@ header h1 {
     margin-bottom: 10px;
 }
 
-/* Main content */
 main {
     background-color: white;
     border-radius: 10px;
@@ -37,7 +36,6 @@ main {
     padding: 30px;
 }
 
-/* Controls section */
 #controls {
     display: flex;
     align-items: center;
@@ -92,13 +90,38 @@ main {
     transform: translateY(0);
 }
 
-/* Results section */
+#lookupCities {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#lookupCities:hover {
+    background-color: #27ae60;
+    transform: translateY(-2px);
+}
+
+#lookupCities:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    #lookupCities {
+        width: 100%;
+    }
+}
+
 #result {
     margin-top: 20px;
     min-height: 100px;
 }
 
-/* Table styles for results */
 #result table {
     width: 100%;
     border-collapse: collapse;
@@ -136,7 +159,6 @@ main {
     border-bottom: none;
 }
 
-/* No results message */
 #result .no-results {
     text-align: center;
     padding: 40px;
@@ -147,7 +169,6 @@ main {
     border: 2px dashed #ddd;
 }
 
-/* Loading indicator */
 .loading {
     text-align: center;
     padding: 30px;
@@ -171,7 +192,6 @@ main {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -206,7 +226,6 @@ main {
     }
 }
 
-/* Error message styling */
 .error {
     background-color: #ffeaea;
     border-left: 4px solid #e74c3c;

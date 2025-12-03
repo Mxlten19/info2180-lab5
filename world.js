@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const lookupButton = document.getElementById('lookup');
+    const lookupCitiesButton = document.getElementById('lookupCities');
     const countryInput = document.getElementById('country');
     const resultDiv = document.getElementById('result');
     
-    lookupButton.addEventListener('click', function(event) {
+    function makeRequest(lookupType) {
         event.preventDefault(); 
         
         const country = countryInput.value.trim();
@@ -11,8 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const xhr = new XMLHttpRequest();
         
         let url = 'world.php';
+        let params = [];
+        
         if (country) {
-            url += '?country=' + encodeURIComponent(country);
+            params.push('country=' + encodeURIComponent(country));
+        }
+        
+        if (lookupType === 'cities') {
+            params.push('lookup=cities');
+        }
+        
+        if (params.length > 0) {
+            url += '?' + params.join('&');
         }
         
         xhr.open('GET', url, true);
@@ -30,5 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         xhr.send();
+    }
+    
+    lookupButton.addEventListener('click', function(event) {
+        makeRequest.call(this, 'countries');
+    });
+    
+    lookupCitiesButton.addEventListener('click', function(event) {
+        makeRequest.call(this, 'cities');
     });
 });
