@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const xhr = new XMLHttpRequest();
         
-        let url = '/info2180-lab5/world.php';
+        let url = 'world.php';
         if (country) {
             url += '?country=' + encodeURIComponent(country);
         }
