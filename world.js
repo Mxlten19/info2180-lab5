@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const xhr = new XMLHttpRequest();
         
-        let url = 'world.php';
+        let url = window.location.pathname.replace('/index.html', '/world.php') || './world.php';
         if (country) {
             url += '?country=' + encodeURIComponent(country);
         }
