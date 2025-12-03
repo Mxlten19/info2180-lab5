@@ -3,28 +3,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const countryInput = document.getElementById('country');
     const resultDiv = document.getElementById('result');
     
-    lookupButton.addEventListener('click', async function(event) {
-        event.preventDefault();
+    lookupButton.addEventListener('click', function(event) {
+        event.preventDefault(); 
         
+        // Get the country value from the input field
         const country = countryInput.value.trim();
+        
+        const xhr = new XMLHttpRequest();
         
         let url = 'world.php';
         if (country) {
             url += '?country=' + encodeURIComponent(country);
         }
         
-        try {
-            const response = await fetch(url);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+        xhr.open('GET', url, true);
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 400) {
+                resultDiv.innerHTML = xhr.responseText;
+            } else {
+                resultDiv.innerHTML = '<p>Error loading data. Please try again.</p>';
             }
-            
-            const html = await response.text();
-            resultDiv.innerHTML = html;
-            
-        } catch (error) {
-            resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
-        }
+        };
+
+        xhr.onerror = function() {
+            resultDiv.innerHTML = '<p>Network error. Please check your connection.</p>';
+        };
+        
+        xhr.send();
     });
 });
