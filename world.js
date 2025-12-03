@@ -6,12 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     lookupButton.addEventListener('click', function(event) {
         event.preventDefault(); 
         
-        // Get the country value from the input field
         const country = countryInput.value.trim();
         
         const xhr = new XMLHttpRequest();
         
-        let url = window.location.pathname.replace('/index.html', '/world.php') || './world.php';
+        let url = 'world.php';
         if (country) {
             url += '?country=' + encodeURIComponent(country);
         }
