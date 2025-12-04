@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const countryInput = document.getElementById('country');
     const resultDiv = document.getElementById('result');
     
-    function makeRequest(lookupType) {
+    function makeRequest(lookupType, event) {
         event.preventDefault(); 
         
         const country = countryInput.value.trim();
@@ -44,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     lookupButton.addEventListener('click', function(event) {
-        makeRequest.call(this, 'countries');
+        makeRequest('countries', event);
     });
     
     lookupCitiesButton.addEventListener('click', function(event) {
-        makeRequest.call(this, 'cities');
+        makeRequest('cities', event);
     });
 });
